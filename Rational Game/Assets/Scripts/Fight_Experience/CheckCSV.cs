@@ -9,6 +9,12 @@ public class CheckCSV : MonoBehaviour
         GameEventManager.OnGameStart += UpdateAllStats;
         GameEventManager.OnDataNeedUpdate += UpdateAllStats;
     }
+    void Start() // ✅ 这里是安全的，此时所有脚本的 Awake 都跑完了
+    {
+        // 强制先读取一次数据，确保怪物有攻击力
+        UpdateAllStats();
+    }
+
 
     void OnDestroy()
     {

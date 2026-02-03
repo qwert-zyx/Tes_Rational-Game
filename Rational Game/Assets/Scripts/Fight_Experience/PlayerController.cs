@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+  
     // 当前状态
     public PlayerState currentState = PlayerState.Moving;
 
@@ -36,6 +37,16 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         GameEventManager.OnWeaponSwapped += HandleWeaponSwap;
+        // 【强制恢复时间】
+        // 防止上一局游戏死掉后时间被设为0，导致新游戏里怪物不刷新、动画不播放
+        Time.timeScale = 1;
+
+        // 【新增】进场时，强制告诉全世界：我已经准备好，开始移动了！
+        // 这样 EnemySpawner 就算初始化晚了，也能收到这个信号
+        currentState = PlayerState.Moving;
+        GameEventManager.CallPlayerStateChanged(PlayerState.Moving);
+
+
     }
     void OnDestroy()
     {

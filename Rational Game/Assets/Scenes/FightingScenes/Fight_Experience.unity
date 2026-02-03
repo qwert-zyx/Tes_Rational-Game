@@ -262,8 +262,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 87}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 84}
+  m_SizeDelta: {x: 355.0002, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &741344977
 MonoBehaviour:
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Daed
+  m_text: Out Of Stamina
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -877,7 +877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -73}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1035805604
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 1130516942}
   - component: {fileID: 1130516941}
   - component: {fileID: 1130516944}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1026,7 +1026,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.009653568, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.007843494, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1174,13 +1174,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1141123117}
-  - component: {fileID: 1141123116}
   - component: {fileID: 1141123115}
   - component: {fileID: 1141123114}
   - component: {fileID: 1141123113}
   - component: {fileID: 1141123112}
   - component: {fileID: 1141123118}
   - component: {fileID: 1141123119}
+  - component: {fileID: 1141123120}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1236,32 +1236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fde4355475e2845bfa17767a3ac271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1141123116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141123111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42dfe6c27c4fcae449616eb3beb46dae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: 0
-  currentXP: 0
-  currentWeaponID: 0
-  nextLevelXP: 0
-  finalMaxHP: 0
-  finalATK: 0
-  finalDEF: 0
-  currentHP: 0
-  weaponATK: 0
-  weaponHP: 0
-  enemyTemplateHP: 0
-  enemyTemplateATK: 0
-  enemyTemplateXP: 0
-  enemyTemplateGroupID: 0
 --- !u!4 &1141123117
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,7 +1267,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 706802686}
   spawnInterval: 3
   spawnCountPool: 020000000100000003000000
-  enemySpacing: 1.5
 --- !u!114 &1141123119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,6 +1284,22 @@ MonoBehaviour:
   infoText: {fileID: 906107433}
   gameOverPanel: {fileID: 1409599139}
   backMenuButton: {fileID: 1035805604}
+  mainMenuSceneName: UI_MainMenu
+--- !u!114 &1141123120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141123111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e7bffa6c7d80548b831a640aba98b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burnRatePerSecond: 0.1
+  outOfStaminaPanel: {fileID: 1409599139}
+  backButton: {fileID: 1035805604}
   mainMenuSceneName: UI_MainMenu
 --- !u!1 &1248574801
 GameObject:
@@ -1638,7 +1627,7 @@ GameObject:
   - component: {fileID: 1409599141}
   - component: {fileID: 1409599140}
   m_Layer: 5
-  m_Name: GameOverPanel
+  m_Name: Panel_StaminaDepleted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1728,6 +1717,70 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1433256223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433256225}
+  - component: {fileID: 1433256224}
+  m_Layer: 0
+  m_Name: LocalData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433256224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433256223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dfe6c27c4fcae449616eb3beb46dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
+  currentXP: 0
+  currentWeaponID: 0
+  nextLevelXP: 0
+  finalMaxHP: 0
+  finalATK: 0
+  finalDEF: 0
+  currentHP: 0
+  weaponATK: 0
+  weaponHP: 0
+  enemyTemplateHP: 0
+  enemyTemplateATK: 0
+  enemyTemplateXP: 0
+  enemyTemplateGroupID: 0
+  isTowerMode: 0
+  targetLevelID: 1
+  currentStamina: 0
+  maxStamina: 100
+  lastStaminaUpdateTime: 
+  staminaRegenPerHour: 10
+--- !u!4 &1433256225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433256223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.415566, y: 1.0282614, z: 5.027329}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1789209064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2053,3 +2106,4 @@ SceneRoots:
   - {fileID: 1405441440}
   - {fileID: 2114088058}
   - {fileID: 1409599143}
+  - {fileID: 1433256225}
