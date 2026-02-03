@@ -22,4 +22,9 @@ public static class GameEventManager
     // 5. 换武器信号 (通知动画)
     public static event Action<int> OnWeaponSwapped;
     public static void CallWeaponSwapped(int weaponID) => OnWeaponSwapped?.Invoke(weaponID);
+
+    // 【新增】玩家状态改变信号
+    // 参数：PlayerState (是移动还是攻击？)
+    public static event Action<PlayerState> OnPlayerStateChanged;
+    public static void CallPlayerStateChanged(PlayerState state) => OnPlayerStateChanged?.Invoke(state);
 }

@@ -17,17 +17,36 @@ public class DeathSettlement : MonoBehaviour
     void HandleEnemyDeath(int xp, int level, int groupID)
     {
         Debug.Log($"收到怪物死亡: XP+{xp}, GroupID:{groupID}");
-        
+
         // === 1. 经验结算 ===
         var db = PlayerBaseData.Instance;
         db.currentXP += xp;
 
-        // 升级判定 (用 while 防止连升两级)
+        // 【修改点】：增加安全性检查
+        // 如果下一级经验是 0（说明数据没读对），或者是负数，绝对不能进循环！
+        if (db.nextLevelXP <= 0)
+        {
+            Debug.LogError("【严重错误】升级所需经验为 0！请检查 PlayerData.csv 或 CheckCSV 读取逻辑！");
+            // 强制给一个值防止死循环，或者直接 return
+            db.nextLevelXP = 100;
+            return;
+        }
+
+        // 增加一个循环次数限制，防止一次升几万级卡死
+        int safetyLoop = 0;
         while (db.currentXP >= db.nextLevelXP)
         {
             db.currentXP -= db.nextLevelXP;
             db.level++;
             Debug.Log("<color=yellow>升级了！</color>");
+
+            // 保险丝：如果循环超过 100 次，强制跳出
+            safetyLoop++;
+            if (safetyLoop > 100)
+            {
+                Debug.LogError("【死循环警报】一次性升级超过100级，强制中断！");
+                break;
+            }
         }
 
         // === 2. 掉落结算 (Weapon Settlement) ===
