@@ -1,4 +1,4 @@
-##Rational Game
+## Rational Game
 
 它是一个数值课作业
 
